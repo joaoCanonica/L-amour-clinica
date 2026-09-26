@@ -75,9 +75,11 @@ convite, guardado na tabela privada `clube_config`. As tabelas têm RLS e não s
 API; um job diário (pg_cron) exclui cadastros com mais de 12 meses. SQL em `supabase/migrations/`.
 
 - **Ver os cadastros:** Supabase → Table Editor → `clube_grupo_solicitacoes`.
-- **Trocar o link do grupo:** editar `clube_config` → `grupo_whatsapp_url` (sem novo deploy).
-- **No WhatsApp:** manter **Aprovar novos participantes** ligado no grupo — a equipe confere
-  nome e número na lista antes de aprovar. É isso que barra quem repassar o link.
+- **Link liberado:** hoje é o Linktree da clínica (`https://linktr.ee/clinica_lamour`), que
+  reúne o grupo e os demais canais. Para trocar: editar `clube_config` → `grupo_whatsapp_url`
+  (sem novo deploy). O servidor só aceita convites `chat.whatsapp.com` ou `linktr.ee`.
+- **Opcional, no WhatsApp:** ligar **Aprovar novos participantes** no grupo para conferir nome
+  e número na lista antes de aprovar — é o que barra quem recebe o link repassado.
 
 ## Privacidade (LGPD)
 

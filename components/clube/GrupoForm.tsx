@@ -17,9 +17,8 @@ function formatPhone(raw: string) {
 }
 
 /**
- * Pedido de entrada no grupo do Clube. O convite nunca está no código da
- * página: o servidor só o devolve depois de gravar o cadastro. A entrada no
- * grupo ainda passa pela aprovação da equipe no WhatsApp.
+ * Pedido de acesso ao grupo do Clube. O link nunca está no código da página:
+ * o servidor só o devolve depois de gravar o cadastro.
  */
 export function GrupoForm() {
   const [state, action, pending] = useActionState<GrupoState, FormData>(solicitarEntradaGrupo, { status: "idle" });
@@ -39,7 +38,7 @@ export function GrupoForm() {
       <div role="status" className="border-t border-navy-950/15 pt-8">
         <p className="type-h3 text-navy-950">Pedido registrado, {state.nome}.</p>
         <p className="mt-4 max-w-md type-body text-navy-950/80">
-          Toque no botão para pedir a entrada no grupo. A equipe confere o seu nome e o seu número antes de aprovar.
+          Toque no botão para acessar o grupo do Clube e os canais oficiais da L&apos;Amour.
         </p>
         <a
           href={state.link}
@@ -47,7 +46,7 @@ export function GrupoForm() {
           rel="noopener noreferrer"
           className="mt-8 inline-flex h-[50px] items-center gap-3 rounded-full bg-navy-950 px-7 text-[0.875rem] font-medium text-linho transition-colors hover:bg-navy-800"
         >
-          Entrar no grupo do WhatsApp
+          Acessar o grupo do Clube
           <span aria-hidden>↗</span>
         </a>
       </div>
@@ -110,7 +109,7 @@ export function GrupoForm() {
             className={input}
           />
           <span id="ajuda-whatsapp" className={`mt-2 block type-small ${err?.fields?.whatsapp ? "text-[#9b2c2c]" : "text-pedra-escuro"}`}>
-            {err?.fields?.whatsapp ?? "O mesmo número que vai entrar no grupo."}
+            {err?.fields?.whatsapp ?? "Com DDD."}
           </span>
         </label>
 
@@ -144,7 +143,7 @@ export function GrupoForm() {
           className="mt-1 size-4 shrink-0 accent-navy-950"
         />
         <span className="type-small text-navy-950/85">
-          Concordo que a L&apos;Amour use meu nome, WhatsApp e cidade para analisar a minha entrada no grupo do Clube,
+          Concordo que a L&apos;Amour use meu nome, WhatsApp e cidade para liberar o meu acesso ao grupo do Clube,
           conforme a{" "}
           <TransitionLink href="/privacidade" className="link-quiet">
             Política de Privacidade
@@ -172,7 +171,7 @@ export function GrupoForm() {
         disabled={pending}
         className="mt-10 inline-flex h-[50px] items-center rounded-full bg-navy-950 px-8 text-[0.875rem] font-medium text-linho transition-colors hover:bg-navy-800 disabled:opacity-60"
       >
-        {pending ? "Enviando…" : "Enviar e liberar o convite"}
+        {pending ? "Enviando…" : "Enviar e liberar o acesso"}
       </button>
     </form>
   );

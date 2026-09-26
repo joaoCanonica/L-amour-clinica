@@ -10,8 +10,7 @@ export function ClubeGrupo() {
             Grupo do Clube <em>no WhatsApp.</em>
           </RevealText>
           <p className="mt-8 max-w-md type-body text-pedra-escuro">
-            Para manter o grupo seguro, o convite só é liberado depois de um cadastro rápido — e cada entrada é
-            confirmada pela equipe da clínica.
+            Para manter o grupo seguro, o acesso só é liberado depois de um cadastro rápido.
           </p>
           <ul className="mt-8 space-y-2 type-small text-pedra-escuro">
             <li>— Seus dados ficam guardados com segurança e nunca são vendidos ou usados para publicidade.</li>

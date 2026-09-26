@@ -8,7 +8,8 @@ import { createHash } from "node:crypto";
  * dados, limita abusos, grava o pedido e devolve o convite guardado na tabela
  * privada `clube_config`. As tabelas não são legíveis pela chave pública —
  * por isso ela pode ficar aqui como padrão (é pública por definição).
- * Para trocar o link do grupo: atualizar `clube_config.grupo_whatsapp_url`.
+ * Para trocar o link: atualizar `clube_config.grupo_whatsapp_url` (hoje aponta
+ * para o Linktree da clínica, que reúne o grupo e os demais canais).
  */
 const SUPABASE_URL = process.env.SUPABASE_URL ?? "https://kcvsnzarnozwojfcodix.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY =
@@ -71,7 +72,11 @@ export async function registrarSolicitacao(dados: Solicitacao): Promise<string> 
   }
 
   const link = (await res.json()) as unknown;
-  if (typeof link !== "string" || !/^https:\/\/chat\.whatsapp\.com\/[A-Za-z0-9]+$/.test(link)) {
+  // Só destinos conhecidos: convite de grupo do WhatsApp ou o Linktree da clínica.
+  if (
+    typeof link !== "string" ||
+    !/^https:\/\/(chat\.whatsapp\.com\/[A-Za-z0-9]+|linktr\.ee\/[A-Za-z0-9_.]+)$/.test(link)
+  ) {
     console.error("[grupo-clube] convite ausente ou inválido em clube_config");
     throw new GrupoError("indisponivel");
   }

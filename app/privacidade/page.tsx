@@ -78,7 +78,7 @@ export default function PrivacidadePage() {
 
             <Section title="Para que usamos e com qual base legal">
               <ul className="space-y-2">
-                <li>— Analisar e liberar a sua entrada no grupo do Clube: consentimento (LGPD, art. 7º, I).</li>
+                <li>— Liberar o seu acesso ao grupo do Clube: consentimento (LGPD, art. 7º, I).</li>
                 <li>
                   — Responder e agendar pelo WhatsApp: procedimentos preliminares a pedido do titular (art. 7º, V).
                 </li>
