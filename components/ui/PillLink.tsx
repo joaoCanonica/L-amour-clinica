@@ -43,9 +43,9 @@ export function PillLink({
   const isExternal = external ?? /^(https?:|tel:|mailto:)/.test(href);
 
   const classes = [
-    "group/pill relative isolate inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border type-label whitespace-nowrap",
+    "group/pill relative isolate inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border whitespace-nowrap text-[0.875rem] font-medium tracking-[0.01em]",
     "transition-colors duration-500 ease-inout",
-    size === "md" ? "h-[52px] gap-5 px-7" : "h-10 gap-3 px-5",
+    size === "md" ? "h-[50px] gap-4 px-7" : "h-10 gap-3 px-5",
     solid
       ? "border-(--pill-base) bg-(--pill-base) text-(--pill-on) hover:text-(--pill-base)"
       : "border-[color-mix(in_srgb,var(--pill-base)_45%,transparent)] text-(--pill-base) hover:border-(--pill-base) hover:text-(--pill-on)",
@@ -62,7 +62,7 @@ export function PillLink({
           solid ? "bg-(--pill-on)" : "bg-(--pill-base)",
         ].join(" ")}
       />
-      <span className="relative pt-px">{children}</span>
+      <span className="relative">{children}</span>
       {isExternal ? (
         <ArrowUpRight className="relative transition-transform duration-500 ease-expo group-hover/pill:translate-x-0.5 group-hover/pill:-translate-y-0.5" />
       ) : (

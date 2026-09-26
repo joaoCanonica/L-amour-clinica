@@ -12,8 +12,8 @@ export default function HomePage() {
       <HomeHero />
       <Manifesto />
       <ServicesIndex />
-      <ProgramaTeaser />
       <ClubeTeaser />
+      <ProgramaTeaser />
       <Depoimento />
       <VisitCTA />
     </>

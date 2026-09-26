@@ -13,6 +13,8 @@ type RevealTextProps = {
   delay?: number;
   stagger?: number;
   id?: string;
+  /** Oculta de leitores de tela (quando o texto acessível está em outro elemento). */
+  decorative?: boolean;
 };
 
 /**
@@ -28,6 +30,7 @@ export function RevealText({
   delay = 0,
   stagger = 0.09,
   id,
+  decorative,
 }: RevealTextProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -77,7 +80,7 @@ export function RevealText({
   );
 
   return (
-    <Tag ref={ref} className={className} data-reveal="" id={id}>
+    <Tag ref={ref} className={className} data-reveal="" id={id} aria-hidden={decorative || undefined}>
       {children}
     </Tag>
   );

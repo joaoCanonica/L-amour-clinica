@@ -1,4 +1,5 @@
 import { MediaFrame } from "@/components/media/MediaFrame";
+import { MitosOzonio } from "@/components/servicos/MitosOzonio";
 import { DrawLine } from "@/components/motion/DrawLine";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
@@ -7,14 +8,12 @@ import type { Service } from "@/lib/content";
 import { image } from "@/lib/media";
 import { whatsappLink } from "@/lib/site";
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 /**
  * Um serviço = um capítulo. Nome em escala de manchete, fio que se desenha
  * ao entrar, mídia de proporção fixa e o agendamento já com o nome do
  * serviço na mensagem. Os blocos alternam o lado da mídia para dar ritmo.
  */
-export function ServiceBlock({ service, index, total }: { service: Service; index: number; total: number }) {
+export function ServiceBlock({ service, index }: { service: Service; index: number }) {
   const flipped = index % 2 === 1;
   const message = `Olá! Gostaria de agendar uma avaliação de ${service.bookingName} na L'Amour.`;
 
@@ -27,19 +26,16 @@ export function ServiceBlock({ service, index, total }: { service: Service; inde
     >
       <div className="shell">
         <div className="relative">
-          <DrawLine axis="x" className="h-px w-full bg-navy-950/20" />
-          <div className="flex items-center justify-between gap-6 pt-5 type-label text-pedra-escuro">
-            <span>
-              {pad(index + 1)} / {pad(total)}
-            </span>
-            <span>{service.detail}</span>
-          </div>
+          <DrawLine axis="x" className="h-px w-full bg-navy-950/15" />
+          <p className={`pt-5 text-[0.875rem] font-medium text-pedra-escuro ${flipped ? "lg:text-right" : ""}`}>
+            {service.detail}
+          </p>
         </div>
 
         <RevealText
           as="h2"
           id={`${service.slug}-titulo`}
-          className={`mt-12 font-serif text-[clamp(2.75rem,1.2rem+6.2vw,7.5rem)] leading-[0.92] tracking-[-0.025em] text-navy-950 lg:mt-16 ${
+          className={`mt-10 font-serif text-[clamp(3rem,1.3rem+6.6vw,8rem)] font-medium leading-[0.92] tracking-[-0.015em] text-navy-950 lg:mt-14 ${
             flipped ? "lg:text-right" : ""
           }`}
         >
@@ -67,10 +63,10 @@ export function ServiceBlock({ service, index, total }: { service: Service; inde
               <p className="type-lead text-navy-950">{service.intro}</p>
             </Reveal>
 
-            <Reveal as="ol" stagger={0.08} className="mt-12 border-t hairline">
-              {service.points.map((point, i) => (
-                <li key={point} className="flex items-baseline gap-5 border-b hairline py-4">
-                  <span className="w-6 shrink-0 font-serif text-lg italic text-pedra">{pad(i + 1)}</span>
+            <Reveal as="ul" stagger={0.08} className="mt-12 border-t border-navy-950/10">
+              {service.points.map((point) => (
+                <li key={point} className="flex items-baseline gap-4 border-b border-navy-950/10 py-4">
+                  <span aria-hidden className="w-5 shrink-0 text-navy-950/35">—</span>
                   <span className="type-body text-navy-950/85">{point}</span>
                 </li>
               ))}
@@ -86,6 +82,8 @@ export function ServiceBlock({ service, index, total }: { service: Service; inde
             </Reveal>
           </div>
         </div>
+
+        {service.slug === "ozonioterapia" ? <MitosOzonio /> : null}
       </div>
     </section>
   );

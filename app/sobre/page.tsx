@@ -1,13 +1,12 @@
-import { Equipe } from "@/components/sobre/Equipe";
 import { Localizacao } from "@/components/sobre/Localizacao";
-import { Principios } from "@/components/sobre/Principios";
+import { Pessoas } from "@/components/sobre/Pessoas";
 import { SobreHero } from "@/components/sobre/SobreHero";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Sobre",
   description:
-    "A L'Amour reúne estética avançada, ozonioterapia, harmonização orofacial, massoterapia e podologia no Centro de Lages/SC — sempre a partir de uma avaliação individual.",
+    "Na L'Amour, a pele é acompanhada com constância, a partir de uma avaliação individual. Estética avançada, ozonioterapia, HOF, massoterapia e podologia no Centro de Lages/SC.",
   path: "/sobre",
 });
 
@@ -15,8 +14,7 @@ export default function SobrePage() {
   return (
     <>
       <SobreHero />
-      <Principios />
-      <Equipe />
+      <Pessoas />
       <Localizacao />
     </>
   );

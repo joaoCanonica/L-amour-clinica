@@ -201,7 +201,7 @@ export function VideoFeature({
             className="absolute inset-0 flex flex-wrap content-end items-end justify-between gap-x-4 gap-y-2 p-5 text-left text-linho sm:p-6"
             aria-label={`${ended ? "Assistir novamente" : cta}: ${label}`}
           >
-            <span className="flex items-center gap-3 whitespace-nowrap type-label">
+            <span className="flex items-center gap-3 whitespace-nowrap text-[0.8125rem] font-medium">
               <svg aria-hidden viewBox="0 0 8 10" className="h-2.5 w-2 shrink-0 fill-current">
                 <path d="M0 0v10l8-5z" />
               </svg>
@@ -210,7 +210,7 @@ export function VideoFeature({
                 <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-current transition-transform duration-700 ease-expo group-hover/video:scale-x-100" />
               </span>
             </span>
-            <span className="type-label shrink-0 text-linho/75">com som · {formatTime(total)}</span>
+            <span className="shrink-0 text-[0.8125rem] text-linho/75">com som · {formatTime(total)}</span>
           </button>
         ) : (
           <div className="absolute inset-x-0 bottom-0 p-5 text-linho sm:p-6">
@@ -224,7 +224,7 @@ export function VideoFeature({
                 </span>
               ))}
             </div>
-            <div className="flex items-center justify-between type-label">
+            <div className="flex items-center justify-between text-[0.8125rem] font-medium">
               <button type="button" onClick={togglePlay} className="py-2">
                 {playing ? "Pausar" : "Continuar"}
               </button>
@@ -251,7 +251,7 @@ export function VideoFeature({
                   type="button"
                   onClick={() => start(i)}
                   aria-current={active ? "true" : undefined}
-                  className={`flex w-full items-baseline justify-between gap-3 py-3 pr-4 text-left type-label transition-opacity ${
+                  className={`flex w-full items-baseline justify-between gap-3 py-3 pr-4 text-left text-[0.8125rem] font-medium transition-opacity ${
                     active ? "opacity-100" : "opacity-60 hover:opacity-100"
                   }`}
                 >

@@ -25,6 +25,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       autoRaf: false,
     });
     instance.on("scroll", ScrollTrigger.update);
+    // A entrada da Home trava a rolagem; ela mesma libera ao terminar.
+    if (document.documentElement.classList.contains("intro-play")) instance.stop();
     const tick = (time: number) => instance.raf(time * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);

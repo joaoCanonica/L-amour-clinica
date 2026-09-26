@@ -3,6 +3,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { RevealImage } from "@/components/motion/RevealImage";
 import { RevealText } from "@/components/motion/RevealText";
 import { PillLink } from "@/components/ui/PillLink";
+import { quotes } from "@/lib/content";
 import { image, video } from "@/lib/media";
 import { doctor, whatsappLink, whatsappMessages } from "@/lib/site";
 
@@ -21,12 +22,12 @@ export function DraLeticia() {
         </div>
 
         <div className="col-span-12 flex flex-col lg:col-span-7 lg:col-start-6">
-          <p className="type-label text-terracota">Quem conduz o protocolo</p>
+          <p className="text-[0.875rem] font-medium text-terracota">{doctor.role}</p>
           <RevealText className="mt-8 font-serif text-[clamp(2.75rem,1.4rem+5vw,6rem)] italic leading-[0.95] tracking-[-0.02em]">
             {doctor.name}
           </RevealText>
 
-          <Reveal as="ul" stagger={0.08} className="mt-10 grid border-t border-cacau/20 sm:grid-cols-3">
+          <Reveal as="ul" stagger={0.08} className="mt-10 grid border-t border-cacau/20 sm:grid-cols-2">
             {doctor.registrations.map((reg) => (
               <li key={reg} className="border-b border-cacau/20 py-4 type-label sm:border-b-0 sm:py-5">
                 {reg}
@@ -37,9 +38,11 @@ export function DraLeticia() {
           </Reveal>
 
           <Reveal>
-            <p className="mt-10 max-w-lg type-lead">
-              O protocolo começa por uma consulta médica detalhada e individualizada — e cada etapa seguinte
-              é definida a partir dela.
+            <blockquote className="mt-10 max-w-lg font-serif text-[clamp(1.8rem,1.4rem+1.4vw,2.6rem)] font-medium italic leading-[1.12]">
+              “{quotes.draProtocolo}”
+            </blockquote>
+            <p className="mt-8 max-w-lg type-lead">
+              {doctor.tagline}
             </p>
           </Reveal>
 

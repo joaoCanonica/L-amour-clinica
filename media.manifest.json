@@ -54,6 +54,17 @@
         "height": 418
       },
       "alt": "Dra. Letícia Piccinin de jaleco, sorrindo durante uma consulta"
+    },
+    "fundadoraRetrato": {
+      "src": "lamour-assets-organizados/equipe/fundadora-post-ozonio-retal.png",
+      "out": "media/fundadora-retrato.jpg",
+      "crop": {
+        "left": 80,
+        "top": 0,
+        "width": 560,
+        "height": 458
+      },
+      "alt": "Fundadora da L'Amour, de jaleco branco, em retrato no consultório"
     }
   },
   "videos": {

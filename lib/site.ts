@@ -31,11 +31,34 @@ export const site = {
 
 export const doctor = {
   name: "Dra. Letícia Piccinin",
-  registrations: ["CRM-SC 29.786", "CRM-SP 288.104", "CRM-PR 65.462"],
+  role: "Médica, palestrante e professora",
+  tagline: "Do emagrecimento à escultura corporal: uma transformação completa.",
+  // Registros informados pela clínica em 26/09/2026 (SC e SP). O CRM-PR
+  // 65.462, citado no briefing inicial, foi retirado — confirmar se segue ativo.
+  registrations: ["CRM-SC 29.786", "CRM-SP 288.104"],
   // TODO(compliance): confirmar se a Dra. Letícia possui RQE. Se houver,
   // incluir aqui (ex.: "RQE 00.000") — o CFM exige RQE ao anunciar
   // especialidade. Sem RQE, não usar termos como "especialista" no site.
   rqe: null as string | null,
+};
+
+// Fundadora da clínica. As legendas dos vídeos dizem "Roseni"; o briefing
+// cita "Roseli" e "Rosane". TODO(conteudo): confirmar o nome (e a profissão +
+// registro no conselho, ex.: COREN, se for anunciada) antes de preencher.
+export const founder = {
+  name: null as string | null,
+  role: "Fundadora da L'Amour",
+};
+
+export const founderLabel = () => founder.name ?? founder.role;
+
+// Controladora dos dados pessoais (LGPD). TODO(compliance): preencher razão
+// social e CNPJ, e o contato do encarregado (e-mail) antes de publicar.
+export const legal = {
+  controller: "L'Amour Clínica de Estética e Ozonioterapia",
+  cnpj: null as string | null,
+  privacyEmail: null as string | null,
+  policyVersion: "2026-09-26",
 };
 
 export function doctorCredentials(separator = " · ") {
@@ -51,13 +74,17 @@ export const whatsappMessages = {
   default: "Olá! Gostaria de agendar uma avaliação na L'Amour.",
   programa:
     "Olá! Gostaria de agendar uma consulta com a Dra. Letícia sobre o Programa de Emagrecimento.",
-  clube: "Olá! Gostaria de saber mais sobre o Clube L'Amour.",
+  clube: "Olá! Quero agendar minha avaliação para o Clube L'Amour.",
+  ozonio: "Olá! Gostaria de agendar uma avaliação de ozonioterapia na L'Amour.",
 } as const;
 
 export const nav = [
+  { href: "/", label: "Início" },
   { href: "/servicos", label: "Serviços" },
   { href: "/programa-emagrecimento", label: "Programa de Emagrecimento" },
   { href: "/clube-lamour", label: "Clube L'Amour" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ] as const;
+
+export const legalNav = [{ href: "/privacidade", label: "Política de privacidade" }] as const;

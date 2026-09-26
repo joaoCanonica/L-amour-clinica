@@ -17,8 +17,8 @@ export type Service = {
   image?: "heroRetrato";
 };
 
-// Textos de interface (intro/points) são provisórios e descritivos, sem
-// promessa de resultado — validar com a clínica antes de publicar.
+// Textos descritivos, sem promessa de resultado. A linguagem vem do que a
+// própria clínica diz nos vídeos (avaliação, protocolo, constância).
 export const services: Service[] = [
   {
     slug: "estetica",
@@ -27,13 +27,8 @@ export const services: Service[] = [
     bookingName: "estética avançada (facial e corporal)",
     detail: "Facial e corporal",
     summary: "Protocolos para pele e contorno corporal, definidos a partir de uma avaliação individual.",
-    intro:
-      "Tratamentos faciais e corporais planejados a partir de uma avaliação da pele, do corpo e da rotina de cada paciente. É a avaliação que define quais procedimentos fazem sentido — e em que momento.",
-    points: [
-      "Avaliação individual da pele e do contorno corporal",
-      "Protocolo definido em conjunto, etapa por etapa",
-      "Reavaliação ao longo do tratamento",
-    ],
+    intro: "Protocolos faciais e corporais pensados para a sua pele — não uma lista de procedimentos. Limpeza, estímulo de colágeno, hidratação profunda e o que mais a sua pele pedir, definidos na avaliação e organizados no ritmo certo.",
+    points: ["Avaliação da pele de perto, da rotina e do que você quer alcançar", "Protocolo com os procedimentos que fazem sentido para o seu caso", "Acompanhamento e ajustes ao longo do tratamento"],
     initial: "E",
     image: "heroRetrato",
   },
@@ -46,13 +41,8 @@ export const services: Service[] = [
     summary: "Aplicações de ozônio integradas ao plano de cuidado, quando indicadas.",
     // TODO(compliance): confirmar o(a) profissional habilitado(a) e quais
     // indicações podem ser anunciadas (Lei 14.648/2023 e normas do conselho).
-    intro:
-      "O ozônio medicinal é utilizado como terapia complementar, integrada ao plano de cuidado. A indicação, a técnica de aplicação e a frequência das sessões são definidas em avaliação.",
-    points: [
-      "Indicação definida em avaliação",
-      "Aplicação integrada a outros tratamentos, quando indicada",
-      "Acompanhamento da resposta a cada sessão",
-    ],
+    intro: "Terapia complementar reconhecida no Brasil pela Lei nº 14.648/2023. Na L'Amour, as aplicações — inclusive por via retal — são feitas por profissional habilitado, em ambiente reservado e sempre a partir de uma avaliação.",
+    points: ["Indicação e objetivos definidos em avaliação", "Aplicação com conforto e privacidade", "Integração com os demais tratamentos, quando indicada"],
     initial: "O",
   },
   {
@@ -64,8 +54,7 @@ export const services: Service[] = [
     // TODO(compliance): informar nome e CRO do(a) profissional responsável pela
     // HOF — exigido pelo CFO em toda divulgação do procedimento.
     summary: "Planejamento facial orientado por proporção e naturalidade.",
-    intro:
-      "Harmonização orofacial com planejamento: proporção, equilíbrio e naturalidade vêm antes de qualquer procedimento. Cada indicação parte da análise do rosto como um todo.",
+    intro: "Harmonização orofacial com planejamento: proporção, equilíbrio e naturalidade vêm antes de qualquer procedimento. Cada indicação parte da análise do rosto como um todo.",
     points: [
       "Análise facial completa",
       "Planejamento dos procedimentos e da sequência",
@@ -80,8 +69,7 @@ export const services: Service[] = [
     bookingName: "massoterapia",
     detail: "Inclusive pós-cirúrgica",
     summary: "Massoterapia terapêutica e acompanhamento no pós-operatório.",
-    intro:
-      "Massoterapia terapêutica e acompanhamento pós-cirúrgico. No pós-operatório, as sessões acompanham cada fase da recuperação e seguem a orientação da equipe cirúrgica.",
+    intro: "Massoterapia terapêutica e cuidado no pós-operatório, com sessões que acompanham cada fase da recuperação e seguem a orientação da sua equipe cirúrgica.",
     points: [
       "Massoterapia terapêutica",
       "Protocolos para o pós-operatório",
@@ -96,8 +84,7 @@ export const services: Service[] = [
     bookingName: "podologia",
     detail: "Tratamento integral",
     summary: "Cuidado completo com a saúde dos pés, do diagnóstico ao tratamento.",
-    intro:
-      "Podologia com tratamento integral: avaliação, cuidado e acompanhamento da saúde dos pés, do primeiro atendimento à manutenção.",
+    intro: "Podologia com tratamento integral: avaliação, cuidado e acompanhamento da saúde dos pés — do primeiro atendimento à manutenção.",
     points: [
       "Avaliação podológica",
       "Tratamento conforme a necessidade de cada caso",
@@ -107,32 +94,81 @@ export const services: Service[] = [
   },
 ];
 
+// Falas reais, transcritas das legendas dos vídeos da clínica.
+export const quotes = {
+  fundadoraConversa: "É essa conversa que define tudo.",
+  fundadoraConstancia:
+    "A pele não responde a procedimentos isolados. Responde à constância, à repetição no ritmo certo.",
+  fundadoraAvulsa: "Os mesmos cuidados que você faria de forma avulsa, pagando um quarto a menos.",
+  fundadoraSozinha: "E você não caminha sozinha: durante o ano, eu acompanho a sua evolução.",
+  pacienteNetflix: "Eu fiz as contas com o que eu gasto com a minha pele e resolvi assinar o Clube L'Amour. Assinar mesmo, tipo Netflix.",
+  pacienteCorreria:
+    "Todo ano eu já fazia limpeza de pele, microagulhamento e hidratação — só que sempre na correria, marcando em cima de algum evento, pagando o valor cheio.",
+  pacienteProtocolo: "Em vez de empurrar procedimento, um protocolo que faz sentido para mim a longo prazo.",
+  draProtocolo: "Aqui, o protocolo vem depois da avaliação. Nunca antes.",
+  draEsforco: "Se você já começou mil dietas e sempre volta a engordar, o seu problema não é falta de esforço.",
+};
+
+// Ozônio retal — adaptado do post da clínica "3 mitos sobre o ozônio retal".
+// A lista de benefícios do post ("elimina toxinas", "equilíbrio hormonal"…)
+// NÃO foi publicada: são alegações terapêuticas sem respaldo que a
+// publicidade em saúde não permite. TODO(compliance): validar este texto.
+export const mitosOzonio = {
+  quote: "É hora de dissipar os mistérios em torno do ozônio retal. Esqueça os estigmas e deixe o preconceito para trás.",
+  items: [
+    {
+      myth: "Não serve para nada.",
+      answer:
+        "O ozônio é reconhecido no Brasil como tratamento complementar (Lei nº 14.648/2023). Por via retal, é usado com objetivos definidos em avaliação, de acordo com cada caso — sempre integrado ao plano de cuidado.",
+    },
+    {
+      myth: "É desconfortável e constrangedor.",
+      answer:
+        "A aplicação é feita por profissional, em ambiente reservado, mantendo o conforto e a privacidade do paciente do início ao fim.",
+    },
+    {
+      myth: "É perigoso e arriscado.",
+      answer:
+        "Realizada por profissional qualificado, com equipamento regularizado e indicação definida em avaliação, a aplicação segue protocolos de segurança.",
+    },
+  ],
+};
+
 export const clube = {
   headline: "Um plano pensado para a sua pele, não uma lista de procedimentos.",
   body:
-    "No Clube L'amour, tudo começa com uma avaliação completa para entender sua pele, sua rotina e o que você deseja alcançar. A partir disso, é montado um protocolo personalizado para acompanhar você ao longo do ano.",
+    "No Clube L'Amour, tudo começa com uma avaliação completa para entender sua pele, sua rotina e o que você deseja alcançar. A partir disso, é montado um protocolo personalizado para acompanhar você ao longo do ano.",
+  // Etapas na ordem em que a fundadora explica o Clube (vídeo).
   steps: [
-    { title: "Avaliação completa", note: "Sua pele, sua rotina e o que você deseja alcançar." },
-    { title: "Protocolo personalizado de 1 ano", note: "Montado a partir da avaliação, para acompanhar você ao longo do ano." },
-    { title: "Acompanhamento contínuo", note: "Do início ao fim do protocolo." },
-    { title: "25% de desconto", note: "No valor total do protocolo.", emphasis: "25%" },
+    {
+      title: "Avaliação",
+      note: "Você vem até a clínica: a pele é vista de perto e a conversa passa pela sua rotina, pelo que você já fez e pelo que quer alcançar.",
+    },
+    {
+      title: "Protocolo do ano",
+      note: "Os procedimentos que fazem sentido para o seu caso — limpeza, estímulo de colágeno, hidratação profunda — organizados ao longo de doze meses.",
+    },
+    {
+      title: "25% de desconto",
+      note: "Com o protocolo fechado, entra um desconto de 25% sobre o valor total. Só depois o valor vira mensalidade, em formato de assinatura.",
+      emphasis: "25%",
+    },
+    {
+      title: "Acompanhamento",
+      note: "Consulta marcada, lembrete na data certa e um protocolo que se ajusta se a sua pele pedir — do início ao fim.",
+    },
   ] as { title: string; note: string; emphasis?: string }[],
-} as const;
+};
 
-// Sobre — construído só com fatos confirmados (serviços, endereço, avaliação
-// antes do protocolo, atendimento com hora marcada).
-// TODO(conteudo): substituir/complementar com a história real da clínica
-// (ano de fundação, fundadora, trajetória) quando o cliente enviar.
+// Sobre — escrito a partir do que a própria clínica diz nos vídeos (avaliação
+// antes do protocolo, constância, acompanhamento) e dos fatos confirmados.
+// TODO(conteudo): acrescentar a história real (ano de fundação, trajetória)
+// quando o cliente enviar.
 export const sobre = {
   story: [
-    "No Centro de Lages, a L'Amour reúne estética avançada, ozonioterapia, harmonização orofacial, massoterapia e podologia em um só endereço.",
-    "Aqui, nenhum protocolo começa antes da avaliação. É ela que define o que fazer, em que ordem e com que frequência.",
-    "Por isso o atendimento é sempre com hora marcada: o tempo de cada consulta é reservado para uma pessoa só.",
-  ],
-  principles: [
-    { title: "Avaliação antes do protocolo", note: "Cada plano de cuidado parte de uma conversa e de uma avaliação individual." },
-    { title: "Tempo reservado", note: "Atendimento somente com agendamento prévio." },
-    { title: "Acompanhamento contínuo", note: "O cuidado segue depois da primeira sessão, com reavaliações ao longo do caminho." },
+    "Na L'Amour, a pele não é tratada com procedimentos isolados. É acompanhada com constância, no ritmo certo.",
+    "Tudo começa na avaliação: a pele vista de perto, a rotina, o que já foi feito e o que se quer alcançar. É essa conversa que define o protocolo.",
+    "No Centro de Lages, a clínica reúne estética avançada, ozonioterapia, harmonização orofacial, massoterapia e podologia — sempre com hora marcada.",
   ],
 };
 

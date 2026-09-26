@@ -37,8 +37,8 @@ Os logos vetoriais (`logo-lamour-vetorizado/`) viram `components/brand/Logo.tsx`
 `terracota #6E3F1F` · `argila #B08463` · `ouro #C9A36B` · `bege-prog #D9C8B6` ·
 `creme #EFE6DC`.
 
-**Tipografia** — Playfair (variável, eixo `opsz` automático = tamanho em px) para títulos;
-Jost 300/400 para corpo e labels (`0.28em`, caixa-alta). Escala em `app/globals.css`:
+**Tipografia** — Cormorant Garamond 500 (títulos, itálico nos destaques) + Manrope 400/500
+(texto e interface). Cormorant nunca abaixo de ~20px. Escala em `app/globals.css`:
 `type-display`, `type-h1`, `type-h2`, `type-h3`, `type-numeral`, `type-lead`, `type-body`,
 `type-small`, `type-label`.
 
@@ -59,10 +59,38 @@ Serviços sem foto usam `MediaFrame` (proporção fixa, placeholder tipográfico
 por foto real, adicione a imagem ao `media.manifest.json` e aponte `image` no serviço em
 `lib/content.ts`. Procure `TODO: substituir por asset real`.
 
+## Entrada da Home
+
+`components/intro/IntroSplash.tsx`: o símbolo "floresce" (molduras, hastes, pétalas, nome) e
+a cortina sobe revelando o hero. Roda só na Home, uma vez por sessão, nunca com movimento
+reduzido; tem "Pular introdução" e rede de segurança de 6 s (`lib/intro.ts`).
+
+## Grupo do Clube (cadastro antes do convite)
+
+O convite do grupo **nunca** está no código da página: o formulário (`/clube-lamour#grupo`)
+envia nome, WhatsApp e cidade para uma Server Action, que valida, limita abusos (hash do IP,
+5 pedidos/hora), grava no Supabase e só então devolve o link. Para ativar:
+
+1. Criar/reativar um projeto Supabase e rodar `supabase/migrations/…_clube_grupo_solicitacoes.sql`.
+2. Na Vercel, definir `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `CLUBE_GRUPO_URL` e
+   `IP_HASH_SALT` (ver `.env.example`). Sem essas variáveis, o formulário mostra "indisponível"
+   e aponta para o WhatsApp — o link nunca vaza.
+3. No WhatsApp, ativar **Aprovar novos participantes** no grupo: a equipe confere nome e número
+   com a lista do Supabase antes de aprovar. (O link revelado pode ser repassado; a aprovação
+   é o que de fato barra quem não se cadastrou.)
+
+## Privacidade (LGPD)
+
+Sem cookies próprios, de métricas ou de publicidade. O único conteúdo de terceiros é o mapa
+do Google em `/contato`, que só carrega com permissão (`lib/consent.ts`, `ConsentBanner`).
+Política em `/privacidade`; preferências reabertas pelo rodapé. Ao mudar a política, altere
+`legal.policyVersion` em `lib/site.ts` — o aviso volta a ser exibido.
+
 ## Compliance (pendências)
 
 Procure `TODO(compliance)` no código: RQE da Dra. Letícia (`lib/site.ts`), responsável
 técnico da clínica (footer), CRO do(a) profissional de HOF e redação do pilar 11
 (`lib/content.ts`), autorização do depoimento em vídeo (`components/home/Depoimento.tsx`), profissional e
-indicações da ozonioterapia (`lib/content.ts`). Conteúdo pendente: `TODO(conteudo)` (história
-da clínica, equipe, horários, regras do Clube).
+indicações da ozonioterapia (`lib/content.ts`). Conteúdo pendente: `TODO(conteudo)` (nome da
+fundadora, história da clínica, equipe, horários, regras do Clube, CNPJ e e-mail do
+encarregado de dados).

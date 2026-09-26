@@ -18,23 +18,17 @@ export function VisitCTA() {
       />
       <div aria-hidden className="absolute inset-0 -z-10 bg-linho/30" />
 
-      <div className="shell flex min-h-[92svh] flex-col justify-center py-28">
-        <p className="type-label text-navy-950/80">{site.schedulingNote}</p>
-        <RevealText className="mt-8 max-w-[16ch] type-display text-navy-950">
+      <div className="shell flex min-h-[90svh] flex-col justify-center py-28">
+        <RevealText className="max-w-[14ch] type-display text-navy-950">
           Sua avaliação começa <em>com uma conversa.</em>
         </RevealText>
-        <Reveal className="mt-12 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <div className="flex flex-wrap items-center gap-4">
-            <PillLink href={whatsappLink(whatsappMessages.default)} solid>
-              Agendar pelo WhatsApp
-            </PillLink>
-            <PillLink href={`tel:+${site.phones.landline.e164}`}>Ligar {site.phones.landline.display}</PillLink>
-          </div>
-          <address className="type-small not-italic text-navy-950/80 lg:text-right">
-            {site.address.street} — {site.address.district}
-            <br />
-            {site.address.city} – {site.address.state}, {site.address.postalCode}
-          </address>
+        <Reveal className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <PillLink href={whatsappLink(whatsappMessages.default)} solid>
+            Agendar pelo WhatsApp
+          </PillLink>
+          <p className="type-small text-navy-950/80">
+            {site.address.street} · {site.address.district}, {site.address.city}
+          </p>
         </Reveal>
       </div>
     </section>

@@ -26,7 +26,7 @@ export function Resumindo() {
           {closing.headline[1]}
         </RevealText>
         <Reveal>
-          <p className="mx-auto mt-10 max-w-[28ch] font-sans text-[clamp(1.25rem,1.1rem+0.5vw,1.5rem)] font-light leading-[1.5] text-creme/85">
+          <p className="mx-auto mt-10 max-w-[28ch] font-sans text-[clamp(1.25rem,1.1rem+0.5vw,1.5rem)] leading-[1.5] text-creme/85">
             {closing.sub}
           </p>
         </Reveal>

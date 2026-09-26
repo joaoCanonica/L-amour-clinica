@@ -54,10 +54,19 @@ export function LogoFull(props: LogoProps) {
         textAnchor="middle"
         textLength="880"
         lengthAdjust="spacing"
-        style={{ font: "400 30px var(--font-jost), sans-serif" }}
+        style={{ font: "400 30px var(--font-manrope), sans-serif" }}
       >
         CLÍNICA DE ESTÉTICA E OZONIOTERAPIA
       </text>
     </Svg>
   );
 }
+
+/**
+ * Partes do símbolo, na ordem do traçado original: [moldura direita, moldura
+ * esquerda, haste superior, pétala esquerda, pétala central, pétala direita,
+ * haste inferior]. Usadas na animação de entrada.
+ */
+export const ICON_PARTS = ICON_D.split(/ (?=M)/);
+export const ICON_VIEWBOX = "462 322 598 565";
+export const POTRACE_TRANSFORM = POTRACE;

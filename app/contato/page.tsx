@@ -14,17 +14,8 @@ export const metadata = pageMetadata({
 export default function ContatoPage() {
   return (
     <section data-tone="light" className="bg-linho">
-      <div className="shell pb-28 pt-[92px] lg:pb-40 lg:pt-[116px]">
-        <Reveal
-          on="mount"
-          delay={0.2}
-          className="flex items-center justify-between gap-6 border-b hairline pb-4 type-label text-pedra-escuro"
-        >
-          <span>Contato e agendamento</span>
-          <span className="hidden sm:inline">Lages — SC</span>
-        </Reveal>
-
-        <RevealText as="h1" on="mount" delay={0.15} className="mt-14 max-w-[17ch] type-display text-navy-950 lg:mt-20">
+      <div className="shell pb-28 pt-[140px] lg:pb-40 lg:pt-[200px]">
+        <RevealText as="h1" on="mount" delay={0.15} className="max-w-[17ch] type-display text-navy-950">
           Atendimento somente com <em>agendamento prévio.</em>
         </RevealText>
 

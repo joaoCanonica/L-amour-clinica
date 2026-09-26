@@ -1,8 +1,9 @@
+import { LogoIcon } from "@/components/brand/Logo";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
-import { LogoIcon } from "@/components/brand/Logo";
 import { PillLink } from "@/components/ui/PillLink";
-import { site, whatsappLink, whatsappMessages } from "@/lib/site";
+import { quotes } from "@/lib/content";
+import { founderLabel, site, whatsappLink, whatsappMessages } from "@/lib/site";
 
 export function ClubeCTA() {
   return (
@@ -12,11 +13,12 @@ export function ClubeCTA() {
         <RevealText className="mt-12 max-w-[14ch] type-display">
           Tudo começa pela <em>avaliação.</em>
         </RevealText>
-        <Reveal className="mt-12 flex w-full flex-col gap-8 border-t border-linho/20 pt-8 lg:flex-row lg:items-center lg:justify-between">
-          <p className="max-w-md type-small text-linho/75">
-            {site.schedulingNote}. As condições do Clube são apresentadas na avaliação.
-            {/* TODO(conteudo): confirmar regras do Clube (fidelidade, forma de pagamento, o que entra no protocolo) para detalhar aqui. */}
-          </p>
+        <Reveal className="mt-10 max-w-lg">
+          <p className="type-lead italic text-linho/85">“{quotes.fundadoraSozinha}”</p>
+          <p className="mt-3 type-small text-linho/65">{founderLabel()}</p>
+        </Reveal>
+        <Reveal className="mt-12 flex w-full flex-col gap-6 border-t border-linho/20 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="type-small text-linho/70">{site.schedulingNote}.</p>
           <PillLink href={whatsappLink(whatsappMessages.clube)} tone="linho" solid>
             Agendar avaliação
           </PillLink>

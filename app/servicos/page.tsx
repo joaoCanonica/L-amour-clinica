@@ -16,7 +16,6 @@ export default function ServicosPage() {
   return (
     <>
       <PageHeader
-        meta={["Serviços", "Somente com agendamento"]}
         title={
           <>
             Cinco frentes, <em>um só</em> cuidado.
@@ -27,7 +26,7 @@ export default function ServicosPage() {
         <ServicesTOC />
       </PageHeader>
       {services.map((service, i) => (
-        <ServiceBlock key={service.slug} service={service} index={i} total={services.length} />
+        <ServiceBlock key={service.slug} service={service} index={i} />
       ))}
       <ServicesNext />
     </>

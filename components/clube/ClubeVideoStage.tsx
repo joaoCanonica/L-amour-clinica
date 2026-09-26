@@ -2,8 +2,10 @@
 
 import { useRef } from "react";
 import { VideoFeature } from "@/components/media/VideoFeature";
+import { quotes } from "@/lib/content";
 import { gsap, prefersReducedMotion, useGSAP } from "@/lib/gsap";
 import type { MediaVideo } from "@/lib/media";
+import { founderLabel } from "@/lib/site";
 
 /**
  * O vídeo da fundadora é o pitch inteiro do Clube: ocupa a altura da tela e
@@ -18,7 +20,7 @@ export function ClubeVideoStage({ source }: { source: MediaVideo }) {
       if (!stage.current || !section.current || prefersReducedMotion()) return;
       gsap.fromTo(
         stage.current,
-        { scale: 0.8, opacity: 0.4 },
+        { scale: 0.82, opacity: 0.5 },
         {
           scale: 1,
           opacity: 1,
@@ -31,21 +33,16 @@ export function ClubeVideoStage({ source }: { source: MediaVideo }) {
   );
 
   return (
-    <section
-      ref={section}
-      id="video"
-      data-tone="dark"
-      className="relative overflow-hidden bg-navy-950 py-20 text-linho lg:py-24"
-    >
-      <div className="shell grid-12 items-center gap-y-10">
-        <div className="col-span-12 lg:col-span-3">
-          <p className="type-label text-nevoa">Como funciona</p>
-          <p className="mt-6 font-serif text-[clamp(1.75rem,1.3rem+1.4vw,2.5rem)] italic leading-[1.12]">
-            O Clube explicado por quem o criou.
+    <section ref={section} id="video" data-tone="dark" className="relative overflow-hidden bg-navy-950 py-20 text-linho lg:py-24">
+      <div className="shell grid-12 items-center gap-y-12">
+        <blockquote className="col-span-12 lg:col-span-4">
+          <p className="font-serif text-[clamp(1.9rem,1.4rem+1.6vw,2.9rem)] font-medium italic leading-[1.12]">
+            “{quotes.fundadoraConstancia}”
           </p>
-        </div>
+          <footer className="mt-6 type-small text-nevoa">{founderLabel()}</footer>
+        </blockquote>
 
-        <div className="col-span-12 flex justify-center lg:col-span-6">
+        <div className="col-span-12 flex justify-center lg:col-span-4">
           <div ref={stage} className="w-full max-w-[min(88vw,calc(86svh*9/16))] origin-center will-change-transform">
             <VideoFeature
               sources={[source]}
@@ -56,10 +53,9 @@ export function ClubeVideoStage({ source }: { source: MediaVideo }) {
           </div>
         </div>
 
-        <div className="col-span-12 type-small text-nevoa lg:col-span-3 lg:text-right">
-          <p>Vídeo com legendas.</p>
-          <p className="mt-1">Da avaliação ao acompanhamento — e como funciona o desconto.</p>
-        </div>
+        <p className="col-span-12 type-small text-nevoa lg:col-span-3 lg:col-start-10 lg:text-right">
+          Um minuto e meio, com legendas: da avaliação ao acompanhamento — e como funciona o desconto.
+        </p>
       </div>
     </section>
   );

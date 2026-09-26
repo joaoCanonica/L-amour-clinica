@@ -14,22 +14,14 @@ export function ProgramaHero() {
         aria-hidden
         className="absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_30%_0%,#6a4222_0%,transparent_65%)]"
       />
-      <div className="shell flex min-h-[100svh] flex-col pb-10 pt-[92px] lg:pt-[116px]">
-        <Reveal
-          on="mount"
-          delay={0.2}
-          className="flex items-center justify-between gap-6 border-b border-creme/15 pb-4 type-label text-ouro"
-        >
-          <span>Programa de Emagrecimento</span>
-          <span className="hidden sm:inline">Protocolo {doctor.name}</span>
-        </Reveal>
+      <div className="shell flex min-h-[100svh] flex-col pb-10 pt-[104px] lg:pt-[120px]">
 
         <div className="grid-12 flex-1 items-center gap-y-12 py-12 lg:py-10">
           <RevealText
             as="h1"
             on="mount"
             delay={0.15}
-            className="col-span-12 font-serif text-[clamp(3.5rem,1.6rem+7.6vw,9.5rem)] leading-[0.9] tracking-[-0.025em] lg:col-span-7"
+            className="col-span-12 font-serif text-[clamp(3.6rem,1.6rem+8vw,10rem)] font-medium leading-[0.9] tracking-[-0.015em] lg:col-span-7"
           >
             {programa.hook.before}
             <br />
