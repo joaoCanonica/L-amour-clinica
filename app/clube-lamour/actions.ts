@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { hashIp, pedidosRecentes, registrarSolicitacao } from "@/lib/server/grupo";
+import { GrupoError, hashIp, registrarSolicitacao } from "@/lib/server/grupo";
 import { legal } from "@/lib/site";
 
 export type GrupoState =
@@ -50,20 +50,21 @@ export async function solicitarEntradaGrupo(_prev: GrupoState, form: FormData): 
   const ipHash = hashIp(ip ?? null);
 
   try {
-    if ((await pedidosRecentes(ipHash)) >= 5) {
-      return { status: "error", message: "Muitos pedidos em sequência. Tente novamente mais tarde.", values };
-    }
     const link = await registrarSolicitacao({
       nome,
       whatsapp: whatsapp!,
       cidade,
-      consentimentoEm: new Date().toISOString(),
       politicaVersao: legal.policyVersion,
       ipHash,
     });
     return { status: "ok", nome: nome.split(" ")[0], link };
   } catch (error) {
-    console.error("[grupo-clube]", error instanceof Error ? error.message : error);
+    if (error instanceof GrupoError && error.code === "limite") {
+      return { status: "error", message: "Muitos pedidos em sequência. Tente novamente mais tarde.", values };
+    }
+    if (error instanceof GrupoError && error.code === "invalido") {
+      return { status: "error", message: "Confira os dados e envie novamente.", values };
+    }
     return {
       status: "error",
       message: "O cadastro está indisponível no momento. Fale com a clínica pelo WhatsApp para entrar no grupo.",

@@ -67,17 +67,17 @@ reduzido; tem "Pular introdução" e rede de segurança de 6 s (`lib/intro.ts`).
 
 ## Grupo do Clube (cadastro antes do convite)
 
-O convite do grupo **nunca** está no código da página: o formulário (`/clube-lamour#grupo`)
-envia nome, WhatsApp e cidade para uma Server Action, que valida, limita abusos (hash do IP,
-5 pedidos/hora), grava no Supabase e só então devolve o link. Para ativar:
+O convite do grupo **nunca** está no código da página. O formulário (`/clube-lamour#grupo`)
+envia nome, WhatsApp e cidade para uma Server Action, que chama a função
+`solicitar_entrada_grupo` no Supabase (projeto **L-amour-clinica**). A função valida os dados,
+limita abusos (5 pedidos/hora por origem, 120/hora no total), grava o pedido e devolve o
+convite, guardado na tabela privada `clube_config`. As tabelas têm RLS e não são legíveis pela
+API; um job diário (pg_cron) exclui cadastros com mais de 12 meses. SQL em `supabase/migrations/`.
 
-1. Criar/reativar um projeto Supabase e rodar `supabase/migrations/…_clube_grupo_solicitacoes.sql`.
-2. Na Vercel, definir `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `CLUBE_GRUPO_URL` e
-   `IP_HASH_SALT` (ver `.env.example`). Sem essas variáveis, o formulário mostra "indisponível"
-   e aponta para o WhatsApp — o link nunca vaza.
-3. No WhatsApp, ativar **Aprovar novos participantes** no grupo: a equipe confere nome e número
-   com a lista do Supabase antes de aprovar. (O link revelado pode ser repassado; a aprovação
-   é o que de fato barra quem não se cadastrou.)
+- **Ver os cadastros:** Supabase → Table Editor → `clube_grupo_solicitacoes`.
+- **Trocar o link do grupo:** editar `clube_config` → `grupo_whatsapp_url` (sem novo deploy).
+- **No WhatsApp:** manter **Aprovar novos participantes** ligado no grupo — a equipe confere
+  nome e número na lista antes de aprovar. É isso que barra quem repassar o link.
 
 ## Privacidade (LGPD)
 

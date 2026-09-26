@@ -90,15 +90,15 @@ export default function PrivacidadePage() {
             <Section title="Com quem os dados são compartilhados">
               <p>
                 Apenas com os fornecedores que operam o site em nosso nome: a Vercel (hospedagem) e a Supabase (banco
-                de dados onde ficam os cadastros do grupo). Esses serviços podem manter servidores fora do Brasil e
-                seguem obrigações contratuais de proteção de dados.
+                de dados onde ficam os cadastros do grupo, com servidores nos Estados Unidos). Esses serviços seguem
+                obrigações contratuais de proteção de dados.
               </p>
             </Section>
 
             <Section title="Por quanto tempo guardamos">
               <p>
-                Os dados do cadastro do grupo ficam guardados enquanto você participar do grupo e são excluídos quando
-                você pedir, quando sair do grupo ou, se a entrada não for concluída, em até 12 meses.
+                Os dados do cadastro do grupo são excluídos automaticamente 12 meses após o cadastro — ou antes, se
+                você pedir.
               </p>
             </Section>
 

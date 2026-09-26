@@ -6,7 +6,7 @@ export const site = {
     primary: "Beleza atemporal. Cuidado singular.",
     secondary: "Cuidado pensado para você.",
   },
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://lamourclinica.com.br",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://lamour-clinica.vercel.app",
   address: {
     street: "R. Prof. Teobaldo Delwing, 359",
     district: "Centro",
@@ -33,31 +33,30 @@ export const doctor = {
   name: "Dra. Letícia Piccinin",
   role: "Médica, palestrante e professora",
   tagline: "Do emagrecimento à escultura corporal: uma transformação completa.",
-  // Registros informados pela clínica em 26/09/2026 (SC e SP). O CRM-PR
-  // 65.462, citado no briefing inicial, foi retirado — confirmar se segue ativo.
-  registrations: ["CRM-SC 29.786", "CRM-SP 288.104"],
+  // Registros informados pela clínica (briefing + confirmação em 26/09/2026).
+  registrations: ["CRM-SC 29.786", "CRM-SP 288.104", "CRM-PR 65.462"],
   // TODO(compliance): confirmar se a Dra. Letícia possui RQE. Se houver,
   // incluir aqui (ex.: "RQE 00.000") — o CFM exige RQE ao anunciar
   // especialidade. Sem RQE, não usar termos como "especialista" no site.
   rqe: null as string | null,
 };
 
-// Fundadora da clínica. As legendas dos vídeos dizem "Roseni"; o briefing
-// cita "Roseli" e "Rosane". TODO(conteudo): confirmar o nome (e a profissão +
-// registro no conselho, ex.: COREN, se for anunciada) antes de preencher.
+// Fundadora da clínica (nome confirmado pela agência em 26/09/2026).
+// TODO(compliance): se a profissão for anunciada (ex.: enfermeira), incluir o
+// registro no conselho (COREN) ao lado do nome.
 export const founder = {
-  name: null as string | null,
+  name: "Roseni" as string | null,
   role: "Fundadora da L'Amour",
 };
 
-export const founderLabel = () => founder.name ?? founder.role;
+export const founderLabel = () => (founder.name ? `${founder.name}, fundadora da L'Amour` : founder.role);
 
-// Controladora dos dados pessoais (LGPD). TODO(compliance): preencher razão
-// social e CNPJ, e o contato do encarregado (e-mail) antes de publicar.
+// Controladora dos dados pessoais (LGPD).
+// TODO(conteudo): trocar o e-mail de contato pelo da clínica/WAXLO quando houver.
 export const legal = {
   controller: "L'Amour Clínica de Estética e Ozonioterapia",
-  cnpj: null as string | null,
-  privacyEmail: null as string | null,
+  cnpj: "22.757.971/0001-13" as string | null,
+  privacyEmail: "jcanonicaescola@gmail.com" as string | null,
   policyVersion: "2026-09-26",
 };
 

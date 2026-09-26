@@ -27,7 +27,7 @@ export function DraLeticia() {
             {doctor.name}
           </RevealText>
 
-          <Reveal as="ul" stagger={0.08} className="mt-10 grid border-t border-cacau/20 sm:grid-cols-2">
+          <Reveal as="ul" stagger={0.08} className="mt-10 grid border-t border-cacau/20 sm:grid-cols-3">
             {doctor.registrations.map((reg) => (
               <li key={reg} className="border-b border-cacau/20 py-4 type-label sm:border-b-0 sm:py-5">
                 {reg}
