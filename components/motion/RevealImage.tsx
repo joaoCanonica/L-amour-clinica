@@ -17,6 +17,7 @@ type RevealImageProps = {
   parallax?: number;
   from?: "bottom" | "top" | "left" | "right";
   objectPosition?: string;
+  style?: React.CSSProperties;
 };
 
 const INSETS = {
@@ -40,6 +41,7 @@ export function RevealImage({
   parallax = 8,
   from = "bottom",
   objectPosition = "50% 50%",
+  style,
 }: RevealImageProps) {
   const frame = useRef<HTMLDivElement>(null);
   const inner = useRef<HTMLDivElement>(null);
@@ -74,7 +76,7 @@ export function RevealImage({
   );
 
   return (
-    <div ref={frame} className={`relative overflow-hidden ${className}`} data-reveal="">
+    <div ref={frame} className={`relative overflow-hidden ${className}`} style={style} data-reveal="">
       <div ref={inner} className="absolute inset-0 will-change-transform">
         <Image
           src={image.src}

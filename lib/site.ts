@@ -15,12 +15,18 @@ export const site = {
     postalCode: "88502-040",
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=R.+Prof.+Teobaldo+Delwing,+359,+Centro,+Lages+-+SC,+88502-040",
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=R.+Prof.+Teobaldo+Delwing,+359,+Centro,+Lages+-+SC,+88502-040",
+    embedUrl:
+      "https://maps.google.com/maps?q=R.+Prof.+Teobaldo+Delwing,+359,+Centro,+Lages+-+SC,+88502-040&z=16&hl=pt-BR&output=embed",
   },
   phones: {
     whatsapp: { display: "(49) 99959-7822", e164: "5549999597822" },
     landline: { display: "(49) 3021-3611", e164: "554930213611" },
   },
   schedulingNote: "Atendimento somente com agendamento prévio",
+  // TODO(conteudo): horários de atendimento não informados — incluir quando o cliente enviar.
+  hours: null as string | null,
 } as const;
 
 export const doctor = {

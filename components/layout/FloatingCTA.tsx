@@ -55,10 +55,6 @@ export function FloatingCTA() {
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0",
       ].join(" ")}
     >
-      <span className="relative flex size-1.5">
-        <span className="absolute inset-0 animate-ping rounded-full bg-current opacity-40 [animation-duration:2.4s]" />
-        <span className="relative size-1.5 rounded-full bg-current" />
-      </span>
       <span className="pt-px">Agendar · WhatsApp</span>
       <ArrowUpRight className="transition-transform duration-500 ease-expo group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
     </a>

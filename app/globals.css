@@ -108,7 +108,7 @@
 
 @utility type-label {
   font-family: var(--font-sans);
-  font-size: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
+  font-size: 0.75rem;
   line-height: 1.2;
   font-weight: 400;
   letter-spacing: 0.28em;
@@ -206,4 +206,10 @@ html.js [data-reveal]:not([data-revealed]) {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Textura de papel — ruído fractal muito sutil, usado nos placeholders
+   tipográficos enquanto as fotos dos procedimentos não chegam. */
+@utility grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.1 0 0 0 0 0.17 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

@@ -38,6 +38,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
   const lenis = useLenis();
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const inFlight = useRef(false);
+  const pendingHash = useRef("");
   const [covering, setCovering] = useState(false);
 
   const scrollToTarget = useCallback(
@@ -66,6 +67,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
       }
 
       inFlight.current = true;
+      pendingHash.current = url.hash;
       setTransitioning(true);
       lenis?.stop();
       setCovering(true);
@@ -91,6 +93,15 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
 
     const frame = requestAnimationFrame(async () => {
       ScrollTrigger.refresh();
+      // Link com âncora para outra página: posiciona na seção ainda coberto.
+      const target = pendingHash.current ? document.querySelector<HTMLElement>(pendingHash.current) : null;
+      pendingHash.current = "";
+      if (target) {
+        const top = target.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo(0, top);
+        lenis?.scrollTo(top, { immediate: true, force: true });
+        ScrollTrigger.update();
+      }
       setTransitioning(false);
       await animate(
         curtain.querySelector("[data-curtain-mark]")!,

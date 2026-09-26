@@ -18,6 +18,12 @@ automaticamente em `predev`/`prebuild`) lê `media.manifest.json`, recorta as fo
 `public/media/` — pasta gerada, fora do git. Para trocar uma foto, ajuste o `crop` no
 manifesto.
 
+Vídeos: o poster (quadro de capa) de cada vídeo fica em
+`lamour-assets-organizados/_gerados/posters/`, gerado por `scripts/extract-posters.mjs`
+(`FFMPEG_PATH=/caminho/ffmpeg node scripts/extract-posters.mjs`). `contentEnd` no manifesto
+marca onde começa o card final branco com o logo — o player termina ali e a prévia em loop
+nunca mostra o card. Imagens de compartilhamento (OG 1200×630) também são geradas no build.
+
 Os logos vetoriais (`logo-lamour-vetorizado/`) viram `components/brand/Logo.tsx`
 (`fill="currentColor"`) e `app/icon.svg`.
 
@@ -43,8 +49,20 @@ Jost 300/400 para corpo e labels (`0.28em`, caixa-alta). Escala em `app/globals.
 `Reveal`, `ScrubWords`, `DrawLine`, `ContextShift`, transição de página com cortina
 (`components/transition`). Tudo respeita `prefers-reduced-motion`.
 
+## Páginas
+
+`/` · `/programa-emagrecimento` · `/servicos` · `/clube-lamour` · `/sobre` · `/contato` ·
+404. SEO por página em `lib/seo.ts` (title, description, canonical, Open Graph, Twitter);
+`sitemap.xml` e `robots.txt` gerados. Defina `NEXT_PUBLIC_SITE_URL` com o domínio final.
+
+Serviços sem foto usam `MediaFrame` (proporção fixa, placeholder tipográfico) — para trocar
+por foto real, adicione a imagem ao `media.manifest.json` e aponte `image` no serviço em
+`lib/content.ts`. Procure `TODO: substituir por asset real`.
+
 ## Compliance (pendências)
 
 Procure `TODO(compliance)` no código: RQE da Dra. Letícia (`lib/site.ts`), responsável
 técnico da clínica (footer), CRO do(a) profissional de HOF e redação do pilar 11
-(`lib/content.ts`), autorização do depoimento em vídeo (`components/home/Depoimento.tsx`).
+(`lib/content.ts`), autorização do depoimento em vídeo (`components/home/Depoimento.tsx`), profissional e
+indicações da ozonioterapia (`lib/content.ts`). Conteúdo pendente: `TODO(conteudo)` (história
+da clínica, equipe, horários, regras do Clube).

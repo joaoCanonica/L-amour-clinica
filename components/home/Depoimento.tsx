@@ -26,9 +26,10 @@ export function Depoimento() {
             <VideoFeature
               sources={[video("depoimento1"), video("depoimento2")]}
               cta="Assistir depoimento"
+              chapters={["Parte 1", "Parte 2"]}
               label="Depoimento em vídeo de paciente do Clube L'Amour, em duas partes"
             />
-            <p className="mt-5 type-small text-navy-950/70">
+            <p className="mt-4 type-small text-navy-950/70">
               Experiência individual. Resultados variam de pessoa para pessoa.
             </p>
           </Reveal>

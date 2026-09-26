@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { PageTransitionProvider } from "@/components/transition/PageTransition";
+import { ogImage } from "@/lib/media";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -31,10 +32,17 @@ export const metadata: Metadata = {
   },
   description:
     "Clínica de estética avançada facial e corporal, ozonioterapia, harmonização orofacial, massoterapia e podologia em Lages/SC. Atendimento somente com agendamento.",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: site.name,
+    url: "/",
+    images: [{ ...ogImage("default"), alt: site.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [ogImage("default").url],
   },
 };
 

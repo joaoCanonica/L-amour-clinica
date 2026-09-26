@@ -46,12 +46,12 @@ export function Footer() {
               <ul className="type-small space-y-1.5">
                 <li>
                   <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">
-                    WhatsApp {site.phones.whatsapp.display}
+                    WhatsApp <span className="whitespace-nowrap">{site.phones.whatsapp.display}</span>
                   </a>
                 </li>
                 <li>
                   <a href={`tel:+${site.phones.landline.e164}`} className="hover:underline underline-offset-4">
-                    Telefone {site.phones.landline.display}
+                    Telefone <span className="whitespace-nowrap">{site.phones.landline.display}</span>
                   </a>
                 </li>
               </ul>

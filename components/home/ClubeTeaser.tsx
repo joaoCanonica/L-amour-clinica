@@ -39,9 +39,10 @@ export function ClubeTeaser() {
                   <span className="font-serif text-2xl italic text-nevoa">{String(i + 1).padStart(2, "0")}</span>
                   <span>
                     <span className="block font-serif text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] leading-tight">
-                      {i === 2 ? (
+                      {step.emphasis ? (
                         <>
-                          <em className="text-[1.35em] leading-none">25%</em> de desconto
+                          <em className="text-[1.35em] leading-none">{step.emphasis}</em>
+                          {step.title.slice(step.emphasis.length)}
                         </>
                       ) : (
                         step.title
