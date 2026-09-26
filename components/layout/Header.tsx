@@ -2,22 +2,79 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { LogoIcon, LogoWordmark } from "@/components/brand/Logo";
 import { useLenis } from "@/components/motion/SmoothScroll";
 import { TransitionLink } from "@/components/transition/PageTransition";
 import { nav, site, whatsappLink, whatsappMessages } from "@/lib/site";
 
 /**
- * Cabeçalho estático: fica no topo da página e sai de cena com o scroll —
- * não acompanha a leitura. Sobre o Programa (fundo cacau) usa creme.
+ * Tons de seção: cada <section data-tone="..."> declara o fundo que ocupa.
+ * O cabeçalho lê o tom da seção logo abaixo dele e usa as mesmas cores —
+ * fica sempre legível, sem "flutuar" com transparência.
+ */
+type Tone = "light" | "dark" | "cacau" | "prog" | "creme";
+
+const TONES: Record<Tone, { ink: string; bg: string }> = {
+  light: { ink: "var(--color-navy-950)", bg: "var(--color-linho)" },
+  dark: { ink: "var(--color-linho)", bg: "var(--color-navy-950)" },
+  cacau: { ink: "var(--color-creme)", bg: "var(--color-cacau)" },
+  prog: { ink: "var(--color-cacau)", bg: "var(--color-bege-prog)" },
+  creme: { ink: "var(--color-cacau)", bg: "var(--color-creme)" },
+};
+
+/**
+ * Cabeçalho fixo: acompanha a rolagem para a navegação estar sempre à mão.
+ * No topo é transparente; ao rolar ganha fundo sólido no tom da seção e
+ * fica mais baixo.
  */
 export function Header() {
   const pathname = usePathname();
   const lenis = useLenis();
+  const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [tone, setTone] = useState<Tone>("light");
   const menuButton = useRef<HTMLButtonElement>(null);
-  const onCacau = pathname.startsWith("/programa-emagrecimento");
+
+  const readTone = useCallback(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const y = header.offsetHeight / 2;
+    for (const el of document.elementsFromPoint(window.innerWidth / 2, y)) {
+      if (header.contains(el)) continue;
+      const section = el.closest<HTMLElement>("[data-tone]");
+      if (section?.dataset.tone && section.dataset.tone in TONES) {
+        setTone(section.dataset.tone as Tone);
+        return;
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 24);
+        readTone();
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [readTone]);
+
+  // Nova rota: relê o tom depois que a página pintou.
+  useEffect(() => {
+    const t = window.setTimeout(readTone, 80);
+    return () => window.clearTimeout(t);
+  }, [pathname, readTone]);
 
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (prevPathname !== pathname) {
@@ -40,12 +97,30 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen, lenis]);
 
-  const ink = menuOpen ? "text-linho" : onCacau ? "text-creme" : "text-navy-950";
+  const colors = menuOpen ? TONES.dark : TONES[tone];
+  const solid = scrolled && !menuOpen;
 
   return (
     <>
-      <header className={`absolute inset-x-0 top-0 z-50 ${ink} ${menuOpen ? "!fixed" : ""}`}>
-        <div className="shell flex h-[76px] items-center justify-between gap-8 lg:h-[92px]">
+      <header
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-50 transition-colors duration-500"
+        style={{ color: colors.ink }}
+      >
+        <div
+          aria-hidden
+          className="absolute inset-0 border-b transition-opacity duration-500"
+          style={{
+            background: colors.bg,
+            borderColor: "color-mix(in srgb, currentColor 12%, transparent)",
+            opacity: solid ? 1 : 0,
+          }}
+        />
+        <div
+          className={`shell relative flex items-center justify-between gap-8 transition-[height] duration-500 ease-expo ${
+            solid ? "h-[64px] lg:h-[72px]" : "h-[76px] lg:h-[92px]"
+          }`}
+        >
           <TransitionLink href="/" aria-label={`${site.shortName} — página inicial`} className="flex items-center gap-3.5">
             <LogoIcon className="h-9 w-auto lg:h-10" />
             <LogoWordmark className="hidden h-[11px] w-auto xs:block lg:h-3" />
@@ -127,7 +202,7 @@ function MobileMenu({ open, onNavigate, pathname }: { open: boolean; onNavigate:
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="fixed inset-0 z-40 flex flex-col bg-navy-950 text-linho lg:hidden"
+          className="fixed inset-0 z-[45] flex flex-col bg-navy-950 text-linho lg:hidden"
           initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
           animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
           exit={{ clipPath: "inset(0% 0% 100% 0%)" }}
