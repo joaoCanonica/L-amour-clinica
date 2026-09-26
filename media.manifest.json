@@ -1,0 +1,56 @@
+{
+  "images": {
+    "heroRetrato": {
+      "src": "lamour-assets-organizados/hero/hero-02-retrato-closeup.png",
+      "out": "media/hero-retrato.jpg",
+      "crop": { "left": 38, "top": 0, "width": 558, "height": 862 },
+      "alt": "Retrato de paciente sorrindo, com pele iluminada e cabelos loiros ondulados"
+    },
+    "heroBlur": {
+      "src": "lamour-assets-organizados/hero/hero-01-blur-artistico-agende-consulta.png",
+      "out": "media/hero-blur.jpg",
+      "crop": { "left": 0, "top": 0, "width": 670, "height": 420 },
+      "alt": ""
+    },
+    "programaHero": {
+      "src": "lamour-assets-organizados/programa-emagrecimento/01-cover-nem-toda-obesidade-e-alimentacao.png",
+      "out": "media/programa-hero.jpg",
+      "crop": { "left": 0, "top": 62, "width": 638, "height": 542 },
+      "alt": "Dra. Letícia Piccinin segurando um modelo anatômico de gordura corporal"
+    },
+    "programaPilares": {
+      "src": "lamour-assets-organizados/programa-emagrecimento/05-cover-pilares-do-protocolo.png",
+      "out": "media/programa-pilares.jpg",
+      "crop": { "left": 0, "top": 54, "width": 628, "height": 556 },
+      "alt": "Dra. Letícia Piccinin em retrato, vestindo blazer verde-oliva"
+    },
+    "draLeticia": {
+      "src": "lamour-assets-organizados/programa-emagrecimento/04-dra-leticia-agende-consulta.png",
+      "out": "media/dra-leticia-consultorio.jpg",
+      "crop": { "left": 40, "top": 0, "width": 638, "height": 418 },
+      "alt": "Dra. Letícia Piccinin de jaleco, sorrindo durante uma consulta"
+    }
+  },
+  "videos": {
+    "fundadora": {
+      "src": "lamour-assets-organizados/clube-lamour/video-explicacao-fundadora.mp4",
+      "out": "media/video/clube-fundadora.mp4",
+      "width": 720, "height": 1280
+    },
+    "depoimento1": {
+      "src": "lamour-assets-organizados/clube-lamour/video-depoimento-paciente-parte1.mp4",
+      "out": "media/video/depoimento-parte-1.mp4",
+      "width": 720, "height": 1280
+    },
+    "depoimento2": {
+      "src": "lamour-assets-organizados/clube-lamour/video-depoimento-paciente-parte2.mp4",
+      "out": "media/video/depoimento-parte-2.mp4",
+      "width": 540, "height": 960
+    },
+    "hookPrograma": {
+      "src": "lamour-assets-organizados/programa-emagrecimento/video-hook-protocolo-dra-leticia.mp4",
+      "out": "media/video/programa-dra-leticia.mp4",
+      "width": 540, "height": 960
+    }
+  }
+}

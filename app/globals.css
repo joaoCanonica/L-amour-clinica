@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   L'Amour — design tokens
+   Marca principal: navy + bege/linho. Sub-marca Programa de Emagrecimento:
+   cacau/terracota — usada apenas como acento de programa "signature".
+--------------------------------------------------------------------------- */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Marca principal */
+  --color-navy-950: #0e1a2b;
+  --color-navy-800: #1e3563;
+  --color-navy-600: #3b5285;
+  --color-areia: #e8d9c3;
+  --color-linho: #f5f0e8;
+  --color-papel: #fbf9f5;
+  --color-pedra: #8c8175; /* decorativo / texto grande — 3.4:1 sobre linho */
+  --color-pedra-escuro: #6f665c; /* texto secundário pequeno — 5:1 sobre linho */
+  --color-nevoa: #a99f93; /* texto secundário sobre navy-950 — 6.7:1 */
+
+  /* Sub-marca Programa de Emagrecimento */
+  --color-cacau: #542b0b;
+  --color-cacau-profundo: #2e1a0c;
+  --color-terracota: #6e3f1f;
+  --color-argila: #b08463;
+  --color-ouro: #c9a36b; /* fio e labels sobre cacau (peça "Resumindo") */
+  --color-bege-prog: #d9c8b6;
+  --color-creme: #efe6dc;
+
+  --font-serif: var(--font-playfair), "Times New Roman", serif;
+  --font-sans: var(--font-jost), "Helvetica Neue", Arial, sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-xs: 26rem;
+}
+
+/* --------------------------------------------------------------------------
+   Escala tipográfica (fluida)
+-------------------------------------------------------------------------- */
+@utility type-display {
+  font-family: var(--font-serif);
+  font-size: clamp(3.25rem, 1.2rem + 7.6vw, 8.75rem);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+@utility type-h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 1.35rem + 5.6vw, 6rem);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+@utility type-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 1.2rem + 3.4vw, 3.75rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+@utility type-h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+@utility type-numeral {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(5rem, 2.6rem + 9.5vw, 11rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  font-variant-numeric: lining-nums;
+}
+
+@utility type-lead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.08rem + 0.55vw, 1.5rem);
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+@utility type-body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+@utility type-small {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+@utility type-label {
+  font-family: var(--font-sans);
+  font-size: clamp(0.6875rem, 0.66rem + 0.1vw, 0.75rem);
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Grid de página: margens laterais fluidas + 12 colunas */
+@utility shell {
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+@utility grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+}
+
+@utility hairline {
+  border-color: color-mix(in srgb, currentColor 14%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   Base
+-------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-linho);
+  }
+
+  body {
+    /* Playfair: opsz acompanha o tamanho em px — o contraste cresce com o
+       corpo do texto sem que os traços finos desapareçam na tela. */
+    font-optical-sizing: auto;
+    background: var(--color-linho);
+    color: var(--color-navy-950);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-navy-800);
+    color: var(--color-linho);
+  }
+
+  :focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+}
+
+/* Máscara de linha do SplitText — evita corte de descendentes em itálico */
+.split-line-mask {
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Estado inicial de elementos revelados por GSAP (evita flash antes do JS).
+   Sem JS ou com movimento reduzido, o conteúdo aparece normalmente. */
+html.js [data-reveal]:not([data-revealed]) {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal]:not([data-revealed]) {
+    visibility: visible;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
